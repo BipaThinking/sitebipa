@@ -506,7 +506,7 @@
 
 			.image.fit img {
 				display: block;
-				width: 100%;
+				width: 40%;
 			}
 
 /* List */
@@ -983,11 +983,11 @@
 /* Wrapper */
 
 	.wrapper {
-		padding: 5em 0 3em 0;
+		padding: 2em 0 3em 0;
 	}
 
 		.wrapper.style1 {
-			background: #f2f2f2;
+			background: #dadada;
 		}
 
 			.wrapper.style1 .box {
@@ -1245,7 +1245,7 @@
 		}
 
 		#banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
-			color: #ffffff;
+			color: #8f1d28;
 		}
 
 		#banner .logo {
