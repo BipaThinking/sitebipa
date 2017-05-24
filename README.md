@@ -1,2 +1,2 @@
-# funstore
-Nova Fun Store. Tudo para fãs de filmes, games, musica e decoração. 
+# Bipa Thinking
+Portifólio. 
