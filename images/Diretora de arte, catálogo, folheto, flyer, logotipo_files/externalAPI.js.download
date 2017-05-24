@@ -1,0 +1,57 @@
+(function(SCOPE) {
+	var externalAPI = {};
+	var module = {exports: externalAPI};
+	var itemClickedHandlers = [], currentItemChangedHandlers = [];
+    var _compId;
+
+	function createItemEvent (compId, type, item, index) {
+        return {
+            compId: compId,
+            event: {
+                action: type,
+                id: item,
+                imageIndex: index
+            }
+        }
+	}
+
+    module.exports.handleItemClicked = function(item, index){
+        var evt = createItemEvent(_compId, 'itemClicked', item, index);
+        itemClickedHandlers.forEach(function(handler) {
+            handler(evt);
+        });
+    };
+
+    module.exports.handleCurrentItemChanged = function(item, index){
+        var evt = createItemEvent(_compId, 'imageChanged', item, index);
+        currentItemChangedHandlers.forEach(function(handler) {
+            handler(evt);
+        });
+    };
+
+    module.exports.handleEditModeChanged = function(prevEditMode, nextEditMode) {
+        if (prevEditMode === 'site' && nextEditMode === 'editor') {
+            itemClickedHandlers.itemClickedHandlers = [];
+            itemClickedHandlers.currentItemChangedHandlers = [];
+        }
+	};
+
+    module.exports.init = function(compId) {
+        _compId = compId;
+        santaPlatformSuperApps.exportAPI({
+            compId: compId,
+            api: {
+                onItemClicked: function(handler) {
+                    itemClickedHandlers.push(handler);
+                },
+                onCurrentItemChanged: function(handler) {
+                    currentItemChangedHandlers.push(handler);
+                }
+            }
+        });
+    };
+
+
+	SCOPE.externalAPI = externalAPI;
+
+}(window));
